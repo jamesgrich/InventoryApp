@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">InventoryApp</string>
+    <string name="category_name_placeholder">Item Name</string>
+    <string name="category_price_placeholder">Item Price</string>
+    <string name="category_quantity_placeholder">Item Quantity</string>
+    <string name="item_one_name">Toaster</string>
+    <string name="item_one_price">£10</string>
+    <string name="item_one_quantity">5</string>
+    <string name="list_button">Sale</string>
+    <string name="delete_button">Delete Product</string>
+    <string name="order_button">Order From Supplier</string>
+    <string name="add_button">+</string>
+    <string name="sale_button">-</string>
+    <string name="name_edit_text">Name of Product</string>
+    <string name="price_edit_text">Quantity</string>
+    <string name="quantity_edit_text">Price</string>
+    <string name="product_activity">Product Detail Page</string>
+</resources>
