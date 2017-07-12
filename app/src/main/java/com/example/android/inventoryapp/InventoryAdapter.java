@@ -62,19 +62,5 @@ public class InventoryAdapter extends ArrayAdapter<Inventory> {
 
         // Return the whole list item layout (containing 3 TextViews)
         return convertView;
-
-//        // Create a list of Inventory items
-//        final ArrayList<Inventory> inventory = new ArrayList<>();
-//        inventory.add(new Inventory(getString(item_one_name), (getString(item_one_price)), (getString(item_one_quantity))));
-//
-//        // Create a AttractionAdapter, whose data source is a list of Cafes.
-//        InventoryAdapter adapter = new InventoryAdapter(this, inventory);
-//
-//        // Find the ListView object in the view hierarchy
-//        ListView listView = (ListView) findViewById(R.id.list_view);
-//
-//        // Make the ListView use the AttractionAdapter created above, so that the
-//        // ListView will display list items for each Cafe in the list.
-//        listView.setAdapter(adapter);
     }
 }

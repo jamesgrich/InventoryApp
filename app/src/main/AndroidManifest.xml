@@ -19,6 +19,9 @@
         <activity
             android:name=".ProductActivity"
             android:label="@string/product_activity" />
+        <activity
+            android:name=".InventoryDetail"
+            android:label="@string/product_detail" />
     </application>
 
 </manifest>

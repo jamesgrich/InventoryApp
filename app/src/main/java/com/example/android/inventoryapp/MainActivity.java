@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.support.design.widget.FloatingActionButton;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -33,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
         // Create a list of Inventory items
         final ArrayList<Inventory> inventory = new ArrayList<>();
         inventory.add(new Inventory(getString(item_one_name),(getString(item_one_price)),(getString(item_one_quantity))));
+        inventory.add(new Inventory(getString(item_one_name),(getString(item_one_price)),(getString(item_one_quantity))));
+        inventory.add(new Inventory(getString(item_one_name),(getString(item_one_price)),(getString(item_one_quantity))));
+        inventory.add(new Inventory(getString(item_one_name),(getString(item_one_price)),(getString(item_one_quantity))));
+        inventory.add(new Inventory(getString(item_one_name),(getString(item_one_price)),(getString(item_one_quantity))));
 
         // Create a AttractionAdapter, whose data source is a list of Cafes.
         InventoryAdapter adapter = new InventoryAdapter(this, inventory);
@@ -43,6 +49,20 @@ public class MainActivity extends AppCompatActivity {
         // Make the ListView use the AttractionAdapter created above, so that the
         // ListView will display list items for each Cafe in the list.
         listView.setAdapter(adapter);
+
+        // Find the View that shows the numbers category
+        ImageView arrow = (ImageView) findViewById(R.id.arrow);
+
+//// Set a click listener on that View
+//        arrow.setOnClickListener(new View.OnClickListener() {
+//            // The code in this method will be executed when the numbers View is clicked on.
+//            @Override
+//            public void onClick(View view) {
+//                Intent detailIntent = new Intent(MainActivity.this, InventoryDetail.class);
+//                startActivity(detailIntent);
+//            }
+//        });
+
     }
 }
 

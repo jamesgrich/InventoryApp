@@ -14,5 +14,6 @@
     <string name="name_edit_text">Name of Product</string>
     <string name="price_edit_text">Quantity</string>
     <string name="quantity_edit_text">Price</string>
-    <string name="product_activity">Product Detail Page</string>
+    <string name="product_activity">New Product</string>
+    <string name="product_detail">Product Detail</string>
 </resources>
