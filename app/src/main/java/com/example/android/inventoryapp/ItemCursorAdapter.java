@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,12 +68,14 @@ public class ItemCursorAdapter extends CursorAdapter {
 
         // Extract values from Cursor object
         String name = cursor.getString(cursor.getColumnIndexOrThrow(InventoryEntry.COLUMN_INVENTORY_NAME));
-        double price = cursor.getDouble(cursor.getColumnIndexOrThrow(InventoryEntry.COLUMN_INVENTORY_PRICE));
+        final int price = cursor.getInt(cursor.getColumnIndexOrThrow(InventoryEntry.COLUMN_INVENTORY_PRICE));
         final int quantity = cursor.getInt(cursor.getColumnIndexOrThrow(InventoryEntry.COLUMN_INVENTORY_QUANTITY));
         final Uri uri = ContentUris.withAppendedId(InventoryEntry.CONTENT_URI, cursor.getInt(cursor.getColumnIndexOrThrow(InventoryEntry._ID)));
 
         // Populate TextViews with values extracted from Cursor object
         itemName.setText(name);
+        itemPrice.setText(Integer.toString(price));
+        itemQuantity.setText(Integer.toString(quantity));
 
         // Find sale Button
         Button saleButton = (Button) view.findViewById(R.id.saleButton);
@@ -81,14 +84,20 @@ public class ItemCursorAdapter extends CursorAdapter {
             @Override
             public void onClick(View v) {
                 // Check if quantity in stock is higher than zero
+                Log.d("inventoryapp", "assigning quantity value");
                 if (quantity > 0) {
                     // Assign a new quantity value of minus one to show that one item sold
+                    Log.d("inventoryapp", "new quantity value of -1 to indicate a sale");
                     int newQuantity = quantity - 1;
                     // Create and initialise a new ContentValue object with the new quantity
+                    Log.d("inventoryapp", "creating a new ContentValue object");
                     ContentValues values = new ContentValues();
+                    Log.d("inventoryapp", "putting the value in as the new quantity");
                     values.put(InventoryEntry.COLUMN_INVENTORY_QUANTITY, newQuantity);
                     // Update the database
+                    Log.d("inventoryapp", "updating database");
                     context.getContentResolver().update(uri, values, null, null);
+                    Log.d("inventoryapp", "updating database complete");
                 } else {
                     // Inform the user that quantity is zero and can't be updated
                     Toast.makeText(context, context.getString(R.string.toast_item_out_stock), Toast.LENGTH_SHORT).show();

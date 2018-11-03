@@ -15,18 +15,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.support.design.widget.FloatingActionButton;
+import android.widget.Toast;
 
 import com.example.android.inventoryapp.data.InventoryContract;
 import com.example.android.inventoryapp.data.InventoryContract.InventoryEntry;
+
+import static com.example.android.inventoryapp.R.id.quantityMinus;
+import static com.example.android.inventoryapp.R.id.saleButton;
 
 
 public class MainActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
     /**
-     * Identifier for the pet data loader
+     * Identifier for the item data loader
      */
     private static final int INVENTORY_LOADER = 0;
 
@@ -58,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements
         inventoryListView.setEmptyView(emptyView);
 
         // Setup an Adapter to create a list item for each row of pet data in the Cursor.
-        // There is no pet data yet (until the loader finishes) so pass in null for the Cursor.
+        // There is no item data yet (until the loader finishes) so pass in null for the Cursor.
         mCursorAdapter = new ItemCursorAdapter(this, null);
         inventoryListView.setAdapter(mCursorAdapter);
 
@@ -67,18 +72,21 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 // Create new intent to go to {@link EditorActivity}
+                Log.d("inventoryapp", "opening the editor activity");
                 Intent intent = new Intent(MainActivity.this, EditorActivity.class);
 
                 // Form the content URI that represents the specific pet that was clicked on,
                 // by appending the "id" (passed as input to this method) onto the
-                // {@link PetEntry#CONTENT_URI}.
+                // {@link InventoryEntry#CONTENT_URI}.
                 // For example, the URI would be "content://com.example.android.pets/pets/2"
                 // if the pet with ID 2 was clicked on.
                 Uri currentUri = ContentUris.withAppendedId(InventoryEntry.CONTENT_URI, id);
 
+                Log.d("inventoryapp", "set the data field of the intent");
                 // Set the URI on the data field of the intent
                 intent.setData(currentUri);
 
+                Log.d("inventoryapp", "launching data editoractivity");
                 // Launch the {@link EditorActivity} to display the data for the current pet.
                 startActivity(intent);
             }
@@ -87,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements
         // Kick off the loader
         getLoaderManager().initLoader(INVENTORY_LOADER, null, this);
     }
+
     /**
      * Helper method to delete all pets in the database.
      */
